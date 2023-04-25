@@ -3,10 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F 
 
 
-class CifarCNN(nn.Module):
+class Classifier(nn.Module):
   
   def __init__(self, num_classes):
-    super(CifarCNN, self).__init__()
+    super(Classifier, self).__init__()
 
     self.conv_block_1 = nn.Sequential(
         nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, padding=1),
