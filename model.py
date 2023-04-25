@@ -4,6 +4,10 @@ import torch.nn.functional as F
 
 
 class Classifier(nn.Module):
+  """
+  Convolutional Neural Network with 6 convolution layers and 3 fully-connected layers. 
+  
+  """
   
   def __init__(self, num_classes):
     super(Classifier, self).__init__()
