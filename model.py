@@ -53,6 +53,6 @@ class Classifier(nn.Module):
     x = self.conv_block_1(x)  # (b, 64, 16, 16)
     x = self.conv_block_2(x)  # (b, 128, 8, 8)
     x = self.conv_block_3(x)  # (b, 256, 4, 4)
-    x = self.fc_layer(x)
+    x = F.softmax(self.fc_layer(x), dim=1)
 
     return x
