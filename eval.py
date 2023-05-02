@@ -6,7 +6,7 @@ from helper import *
 from torch.utils.data import DataLoader 
 
 ##### Location of the Checkpoints #####
-checkpoint_path = ".\checkpoints\cnn2_cifar10.pth"
+checkpoint_path = ".\checkpoints\cnn_cifar10.pth"
 
 # Parameters 
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 
