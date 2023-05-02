@@ -89,7 +89,7 @@ def main():
     augmented_dataset = [] 
     # Download and apply transformation 
     for t in transform_list:
-        augmented_dataset.append(datasets.CIFAR10(root = '../Data/',
+        augmented_dataset.append(datasets.CIFAR10(root = './Data/',
                                                  train = True,
                                                  download = True,
                                                  transform = t))
