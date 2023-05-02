@@ -19,7 +19,7 @@ NUM_CLASSES = len(classes)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Training parameters 
-NUM_EPOCHS = 2
+NUM_EPOCHS = 50
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9 
 WEIGHT_DECAY = 5E-4 
@@ -38,11 +38,8 @@ def gauss_noise_tensor(img):
     dtype = img.dtype
     if not img.is_floating_point():
         img = img.to(torch.float32) 
-
     sigma = 1.0 
-    
     out = img + sigma * torch.randn_like(img) 
-
     if out.dtype != dtype:
         out = out.to(dtype) 
 

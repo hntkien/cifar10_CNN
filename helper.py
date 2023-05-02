@@ -10,16 +10,18 @@ def data_viz(img):
     return np.transpose(npimg, (1, 2, 0)) 
 
 ### Training Function 
-def train_classifier(dataloader, model, loss_fn, optimizer, device):
+def train_classifier(dataloader, model, criterion, optimizer, device):
     """ 
     Train the model in the current epoch. 
 
-    :param dataloader : Training dataloader 
-    :param model      : Defined network architecture 
-    :param loss_fn    : Loss function 
-    :param optimizer  : Optimzier 
-    :param device     : Default device 
-    -> return the average loss over batches in one epoch 
+    Args: 
+        dataloader : Training dataloader 
+        model      : Defined network architecture 
+        loss_fn    : Loss function 
+        optimizer  : Optimzier 
+        device     : Default device 
+    Return:
+        The average loss over batches in one epoch 
 
     """
     model.train() 
@@ -29,8 +31,8 @@ def train_classifier(dataloader, model, loss_fn, optimizer, device):
 
         # Forward pass: compute prediction and loss 
         images, labels = images.to(device), labels.to(device) 
-        preds = model(images) 
-        loss = loss_fn(preds, labels) 
+        outputs = model(images) 
+        loss = criterion(outputs, labels) 
         running_loss.append(loss.item())
 
         # Back propagation 
@@ -41,15 +43,16 @@ def train_classifier(dataloader, model, loss_fn, optimizer, device):
     return np.average(running_loss) 
 
 ### Testing Function 
-def test_classifier(dataloader, classes,  model, loss_fn, device):
+def test_classifier(dataloader, classes,  model, criterion, device):
     """ 
     Function to test the trained model. Print out the average accuracy as well as accuracy for each class in the dataset.
 
-    :param dataloader : Test dataloader 
-    :param classes    : Classes for the dataset
-    :param model      : Defined network architecture 
-    :param loss_fn    : Loss function  
-    :param device     : Default device 
+    Args:
+        dataloader : Test dataloader 
+        classes    : Classes for the dataset
+        model      : Defined network architecture 
+        loss_fn    : Loss function  
+        device     : Default device 
 
     """
     size = len(dataloader.dataset) 
@@ -63,12 +66,13 @@ def test_classifier(dataloader, classes,  model, loss_fn, device):
 
         for images, labels in dataloader: 
             images, labels = images.to(device), labels.to(device) 
-            preds = model(images) 
-            test_loss.append(loss_fn(preds, labels).item()) 
-            accuracy +=(preds.argmax(1)==labels).type(torch.float).sum().item()
+            outputs = model(images) 
+            test_loss.append(criterion(outputs, labels).item()) 
+            preds = outputs.argmax(1)
+            accuracy +=(preds==labels).type(torch.float).sum().item()
 
             # Calcualtion for each class 
-            for label, pred in zip(labels, preds.argmax(1)):
+            for label, pred in zip(labels, preds):
                 if label == pred:
                     correct_preds[classes[label]] += 1 
                 total_preds[classes[label]] += 1 
@@ -95,12 +99,13 @@ def save_checkpoint(epoch, model, loss_fn, optimizer, epoch_loss, path):
     """ 
     Save model checkpoint. 
     
-    :param epoch     : Current epoch number
-    :param model     : Model 
-    :param optimizer : Optimizer 
-    :param loss_fn   : Loss function used 
-    :param epoch_loss: Loss for each epoch upto 'epoch'
-    :param filename  : Name for the checkpoint file
+    Args:
+        epoch     : Current epoch number
+        model     : Model 
+        optimizer : Optimizer 
+        loss_fn   : Loss function used 
+        epoch_loss: Loss for each epoch upto 'epoch'
+        filename  : Name for the checkpoint file
     
     """
     state = {'epoch': epoch,
