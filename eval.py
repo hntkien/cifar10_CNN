@@ -21,7 +21,7 @@ def main():
     transforms = T.Compose(
         [T.ToTensor(),
          T.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-    cifar10_testset = torchvision.datasets.CIFAR10(root = '../Data/',
+    cifar10_testset = torchvision.datasets.CIFAR10(root = './Data/',
                                                    train = False, 
                                                    download = True,
                                                    transform = transforms)

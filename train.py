@@ -19,7 +19,7 @@ NUM_CLASSES = len(classes)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Training parameters 
-NUM_EPOCHS = 50
+NUM_EPOCHS = 80
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9 
 WEIGHT_DECAY = 5E-4 
