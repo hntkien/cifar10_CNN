@@ -1,0 +1,14 @@
+----------- Evaluating ----------
+Evaluation: 
+ Accuracy: 86.5%         Average Loss: 1.598400
+
+Accuracy for class plane is 90.0%
+Accuracy for class car   is 91.8%
+Accuracy for class bird  is 81.2%
+Accuracy for class cat   is 60.4%
+Accuracy for class deer  is 89.4%
+Accuracy for class dog   is 81.5%
+Accuracy for class frog  is 93.9%
+Accuracy for class horse is 90.5%
+Accuracy for class ship  is 94.8%
+Accuracy for class truck is 91.8%
