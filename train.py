@@ -30,7 +30,7 @@ checkpoint_dir = ".\checkpoints"
 PATH = os.path.join(checkpoint_dir, filename)
 
 # Specify path to checkpoints to resume training if available
-checkpoint_path = ".\checkpoints\cnn_cifar10.pth" 
+checkpoint_path =  None 
 
 ##### Gaussian Noise ###### 
 
