@@ -19,7 +19,7 @@ NUM_CLASSES = len(classes)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Training parameters 
-NUM_EPOCHS = 80
+NUM_EPOCHS = 50
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9 
 WEIGHT_DECAY = 5E-4 
@@ -28,7 +28,9 @@ WEIGHT_DECAY = 5E-4
 filename = "cnn_cifar10.pth" 
 checkpoint_dir = ".\checkpoints"
 PATH = os.path.join(checkpoint_dir, filename)
-checkpoint_path = None  # Specify to resume training if available
+
+# Specify path to checkpoints to resume training if available
+checkpoint_path = None 
 
 ##### Gaussian Noise ###### 
 
@@ -126,7 +128,7 @@ def main():
     for epoch in range(start_epoch, NUM_EPOCHS):
         running_loss = train_classifier(dataloader = train_loader,
                                         model = model,
-                                        loss_fn = criterion,
+                                        criterion = criterion,
                                         optimizer = optimizer,
                                         device = device)
         # Append the average loss for each epoch
@@ -134,7 +136,7 @@ def main():
         # Save checkpoint for each epoch 
         save_checkpoint(epoch = epoch,
                         model = model,
-                        loss_fn = criterion,
+                        criterion = criterion,
                         optimizer = optimizer,
                         epoch_loss = epoch_loss,
                         path = PATH)

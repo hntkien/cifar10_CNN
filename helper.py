@@ -95,7 +95,7 @@ def plot_history(data):
     plt.show() 
 
 ### Function to save checkpoint for every epoch 
-def save_checkpoint(epoch, model, loss_fn, optimizer, epoch_loss, path):
+def save_checkpoint(epoch, model, criterion, optimizer, epoch_loss, path):
     """ 
     Save model checkpoint. 
     
@@ -110,7 +110,7 @@ def save_checkpoint(epoch, model, loss_fn, optimizer, epoch_loss, path):
     """
     state = {'epoch': epoch,
              'model': model,
-             'criterion': loss_fn,
+             'criterion': criterion,
              'optimizer': optimizer,
              'epoch_loss': epoch_loss}
     torch.save(state, path)

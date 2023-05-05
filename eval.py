@@ -41,7 +41,7 @@ def main():
     test_classifier(dataloader = test_loader,
                     model = model,
                     classes = classes,
-                    loss_fn = criterion,
+                    criterion = criterion,
                     device = device)
     print("Done!")
 
