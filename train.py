@@ -19,7 +19,7 @@ NUM_CLASSES = len(classes)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Training parameters 
-NUM_EPOCHS = 50
+NUM_EPOCHS = 100
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9 
 WEIGHT_DECAY = 5E-4 
@@ -30,7 +30,7 @@ checkpoint_dir = ".\checkpoints"
 PATH = os.path.join(checkpoint_dir, filename)
 
 # Specify path to checkpoints to resume training if available
-checkpoint_path = None 
+checkpoint_path = ".\checkpoints\cnn_cifar10.pth" 
 
 ##### Gaussian Noise ###### 
 
